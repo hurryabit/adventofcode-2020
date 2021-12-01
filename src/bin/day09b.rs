@@ -13,8 +13,7 @@ fn main() -> Result<(), Error> {
         .lines()
         .map(|line| -> Result<i64, Error> { Ok(line?.parse()?) })
         .collect::<Result<Vec<_>, _>>()?;
-    let mut prefix_sums = Vec::new();
-    prefix_sums.push(0);
+    let mut prefix_sums = vec![0];
     prefix_sums.extend(numbers.iter().scan(0, |sum, number| {
         *sum += number;
         Some(*sum)

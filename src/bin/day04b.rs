@@ -31,14 +31,14 @@ fn main() -> Result<(), Error> {
                     let value = &pair[colon + 1..];
 
                     let good = match key {
-                        "byr" => value.parse().map_or(false, |byr: u16| 1920 <= byr && byr <= 2002),
-                        "iyr" => value.parse().map_or(false, |iyr: u16| 2010 <= iyr && iyr <= 2020),
-                        "eyr" => value.parse().map_or(false, |iyr: u16| 2020 <= iyr && iyr <= 2030),
+                        "byr" => value.parse().map_or(false, |byr: u16| (1920..=2002).contains(&byr)),
+                        "iyr" => value.parse().map_or(false, |iyr: u16| (2010..=2020).contains(&iyr)),
+                        "eyr" => value.parse().map_or(false, |iyr: u16| (2020..=2030).contains(&iyr)),
                         "hgt" => {
                             let number: Result<u16, _> = value[..value.len() - 2].parse();
                             match &value[value.len() - 2..] {
-                                "cm" => number.map_or(false, |hgt| 150 <= hgt && hgt <= 193),
-                                "in" => number.map_or(false, |hgt| 59 <= hgt && hgt <= 76),
+                                "cm" => number.map_or(false, |hgt| (150..=193).contains(&hgt)),
+                                "in" => number.map_or(false, |hgt| (59..=76).contains(&hgt)),
                                 _ => false,
                             }
                         }

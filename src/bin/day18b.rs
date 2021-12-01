@@ -36,7 +36,7 @@ fn atom(input: &str) -> (i64, &str) {
             (digit as i64, &input[1..])
         } else if ch == '(' {
             let (x, input) = expr(&input[1..]);
-            if let Some(input) = input.strip_prefix(")") {
+            if let Some(input) = input.strip_prefix(')') {
                 (x, input)
             } else if let Some(ch) = input.chars().next() {
                 panic!("expected ')', found '{}'", ch);

@@ -110,7 +110,7 @@ fn main() -> Result<(), Error> {
         let lhs = line[..colon].parse().unwrap();
         let mut alts = Vec::new();
         let rhs = &line[colon + 2..];
-        if let Some(rest) = rhs.strip_prefix("\"") {
+        if let Some(rest) = rhs.strip_prefix('\"') {
             alts.push(Terminal(rest.chars().next().unwrap()));
         } else {
             alts.extend(rhs.split(" | ").map(|non_terminals| {
